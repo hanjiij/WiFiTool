@@ -67,7 +67,9 @@ import java.util.Map;
  * @author 韩吉
  */
 @SuppressLint({"ShowToast", "InflateParams"})
-public class MyBaiduMapFragment extends Fragment implements SensorEventListener {
+public class MyBaiduMapFragment
+        extends Fragment
+        implements SensorEventListener {
 
     MapView mapView;
     BaiduMap baiduMap;
@@ -138,8 +140,7 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
     @SuppressLint("InflateParams")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         // TODO Auto-generated method stub
 
         View view = inflater.inflate(R.layout.activity_baidu_map, null);
@@ -290,7 +291,7 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
                     @Override
                     public void onClick(View v) {
                         // TODO Auto-generated method stub
-                        Toast.makeText(getActivity(), aString, 0).show();
+                        Toast.makeText(getActivity(), aString, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -310,7 +311,7 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
 
         Cursor cursor =
                 db.query("PointsSql", new String[]{"ssid", "mac", "Lat", "Lng"}, null, null, null,
-                         null, null);
+                        null, null);
 
         while (cursor.moveToNext()) {
 
@@ -343,23 +344,22 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
     private void createDialog() {
 
         new AlertDialog.Builder(getActivity()).setMessage("检测到GPS或移动网络未开启，同时开启可有效提高精度，确认开启吗？")
-                                              .setPositiveButton("确认",
-                                                                 new DialogInterface.OnClickListener() {
+                .setPositiveButton("确认",
+                        new DialogInterface.OnClickListener() {
 
-                                                                     @Override
-                                                                     public void onClick(
-                                                                             DialogInterface dialog,
-                                                                             int which)
-                                                                     {
-                                                                         // TODO Auto-generated method stub
-                                                                         Intent intent = new Intent(
-                                                                                 Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                                                         startActivityForResult(
-                                                                                 intent,
-                                                                                 0); // 此为设置完成后返回到获取界面
-                                                                     }
-                                                                 }).setNegativeButton("取消", null)
-                                              .create().show();
+                            @Override
+                            public void onClick(
+                                    DialogInterface dialog,
+                                    int which) {
+                                // TODO Auto-generated method stub
+                                Intent intent = new Intent(
+                                        Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                                startActivityForResult(
+                                        intent,
+                                        0); // 此为设置完成后返回到获取界面
+                            }
+                        }).setNegativeButton("取消", null)
+                .create().show();
     }
 
     /**
@@ -464,7 +464,7 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
         // 定位初始化
         baiduMap.setMyLocationConfigeration(
                 new MyLocationConfiguration(MyLocationConfiguration.LocationMode.NORMAL, true,
-                                            null));
+                        null));
 
     }
 
@@ -535,7 +535,7 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
         } else if (sharedPreferences.getFloat("latitude", 0) != 0) {
 
             LatLng aLatLng = new LatLng(sharedPreferences.getFloat("latitude", 0),
-                                        sharedPreferences.getFloat("longitude", 0));
+                    sharedPreferences.getFloat("longitude", 0));
             setcenter(aLatLng);
 
             MapStatusUpdate mapStatusUpdate = MapStatusUpdateFactory.zoomTo(18);
@@ -565,16 +565,16 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
 
         sensorManager.unregisterListener(this);
 
-        // try {
-        // Editor editor = sharedPreferences.edit();
-        // editor.putFloat("latitude", (float) bdlocation.getLatitude());
-        // editor.putFloat("longitude", (float) bdlocation.getLongitude());
-        // editor.commit();
-        // System.out.println("存储地址成功");
-        // } catch (Exception e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
+        try {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putFloat("latitude", (float) bdlocation.getLatitude());
+            editor.putFloat("longitude", (float) bdlocation.getLongitude());
+            editor.commit();
+            System.out.println("存储地址成功");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 
@@ -590,20 +590,28 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
-    {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
         inflater.inflate(R.menu.wifi_location, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.history_map:
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().addToBackStack(null)
-                               .replace(R.id.fragmentContainer, new HistoryLocationFragment())
-                               .commit();
+                        .replace(R.id.fragmentContainer, new HistoryLocationFragment())
+                        .commit();
+                break;
+
+            case R.id.history_point:
+
+                FragmentManager fragmentManager1 = getActivity().getSupportFragmentManager();
+                fragmentManager1.beginTransaction().addToBackStack(null)
+                        .replace(R.id.fragmentContainer, new HistoryWifiPointFragment())
+                        .commit();
+
                 break;
 
             default:
@@ -615,14 +623,13 @@ public class MyBaiduMapFragment extends Fragment implements SensorEventListener 
     /**
      * @author Administrator 地图验证key广播
      */
-    public class SDKReceiver extends BroadcastReceiver {
+    public class SDKReceiver
+            extends BroadcastReceiver {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if (action.equals(SDKInitializer.SDK_BROADTCAST_ACTION_STRING_PERMISSION_CHECK_ERROR)) {
-                Toast.makeText(context, "权限错误", 0).show();
+                Toast.makeText(context, "权限错误", Toast.LENGTH_SHORT).show();
             }
         }
     }
-
-
 }

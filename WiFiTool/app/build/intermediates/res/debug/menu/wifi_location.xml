@@ -8,6 +8,13 @@
         android:showAsAction="never"
         android:icon="@drawable/ic_menu_recent_history"
         android:title="@string/action_check_history_map"/>
+
+    <item
+        android:id="@+id/history_point"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_menu_recent_history"
+        android:title="@string/action_check_history_point"/>
     
 </menu>
 <!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/menu/wifi_location.xml -->

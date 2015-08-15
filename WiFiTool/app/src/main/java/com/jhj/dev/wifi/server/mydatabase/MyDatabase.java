@@ -38,7 +38,7 @@ public class MyDatabase extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
 
         db.execSQL("create table PointsSql (ssid text not null,mac text not null," +
-                   "Lat text not null,Lng text not null,Level text not null);");
+                   "Lat text not null,Lng text not null,Level text not null,address text not null));");
 
         db.execSQL(
                 "create table HistoryPointsSql(address text not null,Lat text not null,Lng text not null);");

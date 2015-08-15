@@ -9,4 +9,10 @@
         android:id="@+id/menu_context_item_connect_ap"
         android:icon="@drawable/ic_launcher"
         android:title="@string/connect_ap"/>
+
+    <item
+        android:id="@+id/menu_context_item_break_ap"
+        android:icon="@drawable/ic_launcher"
+        android:title="@string/break_ap"/>
+
 </menu>

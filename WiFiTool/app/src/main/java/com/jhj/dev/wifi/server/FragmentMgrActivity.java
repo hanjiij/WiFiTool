@@ -1,10 +1,12 @@
 package com.jhj.dev.wifi.server;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
@@ -17,9 +19,9 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.jhj.dev.wifi.server.fragment.BreakWifiFragment;
 import com.jhj.dev.wifi.server.fragment.FinderFragment;
 import com.jhj.dev.wifi.server.fragment.HistoryLocationFragment;
+import com.jhj.dev.wifi.server.fragment.HistoryWifiPointFragment;
 import com.jhj.dev.wifi.server.fragment.MyBaiduMapFragment;
 import com.jhj.dev.wifi.server.fragment.RadarFragment;
 import com.jhj.dev.wifi.server.util.InitMacSQL;
@@ -37,7 +39,8 @@ import java.util.TimerTask;
 /**
  * @author 江华健
  */
-public class FragmentMgrActivity extends FragmentActivity {
+public class FragmentMgrActivity
+        extends FragmentActivity {
     private static final int INTERVAL = 2500;
     private static final String ACTION_WIFI_STATE_CHANGED = WifiManager.WIFI_STATE_CHANGED_ACTION;
     private static final String ACTION_NETWORK_STATE_CHANGED =
@@ -69,20 +72,28 @@ public class FragmentMgrActivity extends FragmentActivity {
     private WifiScanner wifiScanner;
     //	private String fragmentTag;
     //	private int fragmentPosition;
-    private int selectViewMenuItemId =R.id.action_selectView_apList;
+    private int selectViewMenuItemId = R.id.action_selectView_apList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_PROGRESS);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("local", Context.MODE_PRIVATE);
 
         setContentView(R.layout.activity_fragment);
 
-        new InitMacSQL(this);
+        boolean isFirst = sharedPreferences.getBoolean("isFirst", true);
+
+        if (isFirst) {
+            new InitMacSQL(this);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isFirst", false);
+            editor.commit();
+        }
 
         dialogMgr = DialogMgr.getInstance(this, this);
         wifiScanner = WifiScanner.getInstance(this);
@@ -112,53 +123,47 @@ public class FragmentMgrActivity extends FragmentActivity {
     }
 
 
-    private void launcherDefaultFragment()
-    {
+    private void launcherDefaultFragment() {
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentContainer,
-                                                           new WifiAPListFragment())
-                                   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                   .commit();
+                new WifiAPListFragment())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
         //		fragmentPosition = R.id.action_selectView_apList;
     }
 
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig)
-    {
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         String screenOrientation = "??";
         Toast.makeText(this, screenOrientation, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState)
-    {
+    protected void onSaveInstanceState(Bundle outState) {
         System.out.println("-------------activity---------onSaveInstanceState-------------------");
         //		outState.putString(FRAGMENTTAG, fragmentTag);
         //		outState.putInt(FRAGMENTPOSITION, fragmentPosition);
     }
 
-    private void showView(Fragment fragment)
-    {
+    private void showView(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
-                                   .replace(R.id.fragmentContainer, fragment)
-                                   .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                   .commit();
+                .replace(R.id.fragmentContainer, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu)
-    {
+    public boolean onPrepareOptionsMenu(Menu menu) {
 
         menu.findItem(R.id.action_selectView).getSubMenu()
-            .findItem(selectViewMenuItemId).setChecked(true);
+                .findItem(selectViewMenuItemId).setChecked(true);
 
         return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.main, menu);
 
@@ -167,13 +172,12 @@ public class FragmentMgrActivity extends FragmentActivity {
 
 
     @Override
-    public boolean onMenuOpened(int featureId, Menu menu)
-    {
+    public boolean onMenuOpened(int featureId, Menu menu) {
         if (featureId == Window.FEATURE_ACTION_BAR && menu != null) {
             if (menu.getClass().getSimpleName().equals("MenuBuilder")) {
                 try {
                     Method method = menu.getClass()
-                                        .getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
+                            .getDeclaredMethod("setOptionalIconsVisible", Boolean.TYPE);
                     method.setAccessible(true);
                     method.invoke(menu, true);
                 } catch (NoSuchMethodException | IllegalAccessException
@@ -188,18 +192,17 @@ public class FragmentMgrActivity extends FragmentActivity {
 
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
         switch (itemId) {
             case R.id.action_selectView_apList:
                 showView(new WifiAPListFragment());
 
                 break;
-            case R.id.action_selectView_breakWifi:
+            /*case R.id.action_selectView_breakWifi:
                 showView(new BreakWifiFragment());
 
-                break;
+                break;*/
             case R.id.action_selectView_network_topology:
                 showView(new FinderFragment());
                 break;
@@ -235,10 +238,9 @@ public class FragmentMgrActivity extends FragmentActivity {
         }
 
         if (itemId != R.id.action_about &&
-            itemId != R.id.action_quit &&
-            itemId != R.id.action_selectView_RSSIMap &&
-            itemId != R.id.action_help)
-        {
+                itemId != R.id.action_quit &&
+                itemId != R.id.action_selectView_RSSIMap &&
+                itemId != R.id.action_help) {
             selectViewMenuItemId = itemId;
         }
 
@@ -248,8 +250,7 @@ public class FragmentMgrActivity extends FragmentActivity {
     /*
      * 注册Wifi事件广播接受
      */
-    private void registWifiStateReceiver()
-    {
+    private void registWifiStateReceiver() {
 
         System.out.println("---------------registWifiStateReceiver-----------------------");
 
@@ -269,8 +270,7 @@ public class FragmentMgrActivity extends FragmentActivity {
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         DialogMgr.changeActivity(this);
         wifiScanner.startScan();
         super.onResume();
@@ -278,8 +278,7 @@ public class FragmentMgrActivity extends FragmentActivity {
 
 
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         wifiScanner.stopScan();
         super.onStop();
     }
@@ -289,8 +288,7 @@ public class FragmentMgrActivity extends FragmentActivity {
      * 退出应用时撤销注册的Wifi广播接收
 	 */
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         System.out.println("-----------------------------unregisterReceiver----------------");
         unregisterReceiver(wifiReceiver);
         super.onDestroy();
@@ -333,7 +331,7 @@ public class FragmentMgrActivity extends FragmentActivity {
                     InitButtonprogressDialog();
                 } else {
                     Toast.makeText(FragmentMgrActivity.this, "定位失败，请到移步至开阔场合", Toast.LENGTH_SHORT)
-                         .show();
+                            .show();
                 }
             }
         });
@@ -352,16 +350,15 @@ public class FragmentMgrActivity extends FragmentActivity {
         searchingProgressDialog.setCancelable(false);
 
         searchingProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "结束WIFI侦测",
-                                          new DialogInterface.OnClickListener() {
-                                              @Override
-                                              public void onClick(DialogInterface dialog, int which)
-                                              {
-                                                  // TODO Auto-generated method stub
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Auto-generated method stub
 
-                                                  setWifiPoint.SetSalculate();
+                        setWifiPoint.SetSalculate();
 
-                                              }
-                                          });
+                    }
+                });
 
         searchingProgressDialog.show();
     }
@@ -389,11 +386,11 @@ public class FragmentMgrActivity extends FragmentActivity {
     }
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         Fragment fragment = getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainer);
-        if (fragment instanceof HistoryLocationFragment) {
+        if (fragment instanceof HistoryLocationFragment ||
+                fragment instanceof HistoryWifiPointFragment) {
             super.onBackPressed();
             return;
         }

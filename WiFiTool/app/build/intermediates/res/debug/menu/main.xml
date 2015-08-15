@@ -15,10 +15,10 @@
                     android:checked="true"
                     android:icon="@drawable/ic_menu_ap_list"
                     android:title="@string/title_menu_view_apList"/>
-                <item
+                <!--<item
                     android:id="@+id/action_selectView_breakWifi"
                     android:icon="@drawable/ic_menu_ap_break"
-                    android:title="@string/title_menu_view_brokeWifi"/>
+                    android:title="@string/title_menu_view_brokeWifi"/>-->
                 <item
                     android:id="@+id/action_selectView_network_topology"
                     android:icon="@drawable/ic_menu_network_topology"

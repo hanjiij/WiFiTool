@@ -16,16 +16,20 @@ import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.ExpandableListContextMenuInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jhj.dev.wifi.server.DialogMgr;
 import com.jhj.dev.wifi.server.R;
 import com.jhj.dev.wifi.server.WifiMan;
+import com.jhj.dev.wifi.server.util.BreakWifiUtil;
 
 
 /**
  * @author 江华健
  */
-public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoChangedListener {
+public class WifiAPListFragment
+        extends Fragment
+        implements WifiMan.OnWifiInfoChangedListener {
     /**
      * Wifi接入点列表适配器
      */
@@ -41,6 +45,10 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
      */
     private TextView tv_wifiConState;
 
+    /**
+     * wifi破解工具类
+     */
+    private BreakWifiUtil breakWifiUtil;
 
     /**
      * Wifi管理员
@@ -88,16 +96,15 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
         dialogMgr = DialogMgr.getInstance(getActivity(), getActivity());
 
         wifiConStateDrawables = new Drawable[]{getResources().getDrawable(R.drawable.ic_error_red),
-                                               getResources().getDrawable(R.drawable.ic_warning),
-                                               getResources().getDrawable(R.drawable.ic_ok)};
+                getResources().getDrawable(R.drawable.ic_warning),
+                getResources().getDrawable(R.drawable.ic_ok)};
         System.out.println("WifiAPListFragment--------->onCreate()");
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_wifi_ap_list, container, false);
         getUIObjHandles(rootView);
 
@@ -114,12 +121,12 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
         tv_wifiConState = (TextView) rootView.findViewById(R.id.tv_wifiConState);
         tv_wifiConState.setText(
                 wifiMan.isWifiOpened() ? wifiMan.isWifiConnected() ? wifiMan.getApConnectState()
-                                                                   : getString(
-                                                                           R.string.wifi_disconnected)
-                                       : getString(R.string.wlan_disabled));
+                        : getString(
+                        R.string.wifi_disconnected)
+                        : getString(R.string.wlan_disabled));
         Drawable img = wifiMan.isWifiOpened() ? wifiMan.isWifiConnected() ? wifiConStateDrawables[2]
-                                                                          : wifiConStateDrawables[1]
-                                              : wifiConStateDrawables[0];
+                : wifiConStateDrawables[1]
+                : wifiConStateDrawables[0];
         img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
         tv_wifiConState.setCompoundDrawables(img, null, null, null);
         tv_wifiConState.setOnClickListener(new View.OnClickListener() {
@@ -155,8 +162,8 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
     public void onWifiConStateChanged(String newConState) {
         tv_wifiConState.setText(newConState);
         Drawable img = wifiMan.isWifiOpened() ? wifiMan.isWifiConnected() ? wifiConStateDrawables[2]
-                                                                          : wifiConStateDrawables[1]
-                                              : wifiConStateDrawables[0];
+                : wifiConStateDrawables[1]
+                : wifiConStateDrawables[0];
         img.setBounds(0, 0, img.getIntrinsicWidth(), img.getIntrinsicHeight());
         tv_wifiConState.setCompoundDrawables(img, null, null, null);
 
@@ -176,6 +183,15 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
                 break;
             case R.id.action_sortByRSSI:
                 wifiMan.changeSort("sortByWifiLevel");
+                break;
+
+            case R.id.automatic_break_wifi:
+
+                if (breakWifiUtil == null) {
+
+                    breakWifiUtil = new BreakWifiUtil(getActivity());
+                }
+                breakWifiUtil.InitBreakWifi(null, true);
                 break;
             default:
                 break;
@@ -213,7 +229,7 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
         //						: groupPosition, childPosition);
         apDetails =
                 wifiMan.getWifiAPSelectedDetails(isGroup, isGroup ? groupPosition : groupPosition,
-                                                 childPosition);
+                        childPosition);
 
     }
 
@@ -252,6 +268,23 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
                 }
 
                 break;
+
+            case R.id.menu_context_item_break_ap:
+
+                if (!apDetails.equals("[ESS]")) {
+
+                    if (breakWifiUtil == null) {
+
+                        breakWifiUtil = new BreakWifiUtil(getActivity());
+                    }
+
+                    breakWifiUtil.InitBreakWifi(apName, false);
+                } else {
+                    Toast.makeText(getActivity(),
+                            getActivity().getResources().getString(R.string.is_open_ap),
+                            Toast.LENGTH_SHORT).show();
+                }
+                break;
             default:
                 break;
         }
@@ -285,7 +318,8 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
     /**
      * Wifi接入点数据显示列表适配器
      */
-    private class WifiAPExpListAdapter extends BaseExpandableListAdapter {
+    private class WifiAPExpListAdapter
+            extends BaseExpandableListAdapter {
 
         @Override
         public int getGroupCount() {
@@ -329,11 +363,10 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
 
         @Override
         public View getGroupView(int groupPosition, boolean isExpanded, View convertView,
-                                 ViewGroup parent)
-        {
+                                 ViewGroup parent) {
             if (convertView == null) {
                 convertView = getActivity().getLayoutInflater()
-                                           .inflate(R.layout.item_wifi_ap_group, parent, false);
+                        .inflate(R.layout.item_wifi_ap_group, parent, false);
             }
 
             ImageView imgView_ap_level =
@@ -344,9 +377,9 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
                     (ImageView) convertView.findViewById(R.id.imgView_groupIndicator);
             imgView_groupIndicator.setBackgroundResource(
                     wifiMan.isHasChildren(groupPosition) ? isExpanded
-                                                           ? R.drawable.expander_close_holo_dark
-                                                           : R.drawable.expander_open_holo_dark
-                                                         : 0);
+                            ? R.drawable.expander_close_holo_dark
+                            : R.drawable.expander_open_holo_dark
+                            : 0);
 
             ImageView imgView_ap_5G = (ImageView) convertView.findViewById(R.id.imgView_ap_5G);
             imgView_ap_5G.setBackgroundResource(
@@ -366,8 +399,8 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
             TextView tv_apFrequency = (TextView) convertView.findViewById(R.id.tv_ap_frequency);
             int apFrequency = wifiMan.getWifiAPFrequency(true, groupPosition);
             tv_apFrequency.setText(apFrequency + getString(R.string.txt_MHz) +
-                                   wifiMan.judgeFrequency(apFrequency) +
-                                   getString(R.string.txt_GHz));
+                    wifiMan.judgeFrequency(apFrequency) +
+                    getString(R.string.txt_GHz));
 
             WifiAPListItemRSSIView listItemRSSIView =
                     (WifiAPListItemRSSIView) convertView.findViewById(R.id.wifiAPListItemRSSIView);
@@ -383,11 +416,10 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
 
         @Override
         public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
-                                 View convertView, ViewGroup parent)
-        {
+                                 View convertView, ViewGroup parent) {
             if (convertView == null) {
                 convertView = getActivity().getLayoutInflater()
-                                           .inflate(R.layout.item_wifi_ap_child, parent, false);
+                        .inflate(R.layout.item_wifi_ap_child, parent, false);
             }
 
             ImageView imgView_ap_level =
@@ -398,7 +430,7 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
             ImageView imgView_ap_5G = (ImageView) convertView.findViewById(R.id.imgView_ap_5G);
             imgView_ap_5G.setBackgroundResource(
                     wifiMan.isAP5GHz(false, groupPosition, childPosition)
-                    ? R.drawable.ic_ap_5g_white : 0);
+                            ? R.drawable.ic_ap_5g_white : 0);
 
             TextView tv_apSSID = (TextView) convertView.findViewById(R.id.tv_ap_SSID);
             String apSSID = getChild(groupPosition, childPosition).toString();
@@ -415,8 +447,8 @@ public class WifiAPListFragment extends Fragment implements WifiMan.OnWifiInfoCh
             TextView tv_apFrequency = (TextView) convertView.findViewById(R.id.tv_ap_frequency);
             int apFrequency = wifiMan.getWifiAPFrequency(false, groupPosition, childPosition);
             tv_apFrequency.setText(apFrequency + getString(R.string.txt_MHz) +
-                                   wifiMan.judgeFrequency(apFrequency) +
-                                   getString(R.string.txt_GHz));
+                    wifiMan.judgeFrequency(apFrequency) +
+                    getString(R.string.txt_GHz));
 
             WifiAPListItemRSSIView listItemRSSIView =
                     (WifiAPListItemRSSIView) convertView.findViewById(R.id.wifiAPListItemRSSIView);

@@ -165,7 +165,7 @@ public class SetWifiPoint {
     }
 
     /**
-     * @param name 指定ssid的名字
+     * @param mac 指定ssid的名字
      * @return 返回在第几步中出现最强信号，未找到返回-1
      */
     private int getLevelMAX(String mac) {
@@ -185,7 +185,7 @@ public class SetWifiPoint {
 
     /**
      * @param count 需要获取第几步里的wifi集合
-     * @param name  指定获取哪个信号的强度
+     * @param mac  指定获取哪个信号的强度
      * @return 返回信号的强度
      */
     private int getLevel(int count, String mac) {
@@ -256,6 +256,7 @@ public class SetWifiPoint {
                             values.put("Lat", ToCoordinateLat(points.get(count).get("X")) + "");
                             values.put("Lng", ToCoordinateLon(points.get(count).get("Y")) + "");
                             values.put("Level", MAXlevel + "");
+                            values.put("address", Location.getAddrStr());
                             db.insert("PointsSql", null, values);
 
                         } else if (judgeLevel(macString, MAXlevel) == 1) {
