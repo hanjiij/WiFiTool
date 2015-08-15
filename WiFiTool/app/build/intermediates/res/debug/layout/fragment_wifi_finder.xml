@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.jhj.dev.wifi.server.wififinder.WifiFinderView
+        android:id="@+id/wifiFinderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!-- 
+       <TextView 
+        android:id="@+id/tv_stepCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:textSize="25sp"
+        android:text="0"/>
+    <TextView 
+        android:id="@+id/tv_apRSSI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#ffff00"
+        android:textSize="25sp"
+        android:text="-80dBm"/>
+     -->
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="5dp">
+
+            <ImageView
+                android:id="@+id/imgView_led"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:src="@drawable/meter_led_off" />
+
+            <Button
+                android:id="@+id/but_selectAP"
+                style="@style/Button_SelectAP_Style"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:text="sa323" />
+            <ToggleButton 
+                android:id="@+id/togBut_tone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:checked="false"
+                android:layout_margin="5dp"
+                android:textOn="@string/but_selectAP_txt_open"
+                android:textOff="@string/but_selectAP_txt_close"/>
+   
+    </RelativeLayout>
+
+</FrameLayout><!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/layout/fragment_wifi_finder.xml -->

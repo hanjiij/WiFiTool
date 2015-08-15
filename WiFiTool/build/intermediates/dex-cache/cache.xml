@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Android-SDK\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-f3733e160897687d9290fe80ade6ee22494e6cf3.jar" />
+    </item>
+    <item
+        jar="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\libs\BaiduLBS_Android.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="868c060abfa9778e598e631f93f94037edbe8996">
+        <dex dex="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\pre-dexed\debug\BaiduLBS_Android-584f10d63175b83e8b25e1b9b6485afd4adfa6d8.jar" />
+    </item>
+    <item
+        jar="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-c38315b02583f8501164cdbd52767edbc076da21.jar" />
+    </item>
+    <item
+        jar="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\pre-dexed\debug\classes-4fa4df7fa722f7eb382007dc23f90dc57beb03ba.jar" />
+    </item>
+    <item
+        jar="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="D:\Android-Studio\AndroidstudioProjects\WiFiTool\app\build\intermediates\pre-dexed\debug\classes-7e45fd4cc4ac60ce9acb182bfc5df723b222e312.jar" />
+    </item>
+
+</items>

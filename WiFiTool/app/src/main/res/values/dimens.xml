@@ -1,0 +1,70 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="ap_list_item_rssi_text_size">12sp</dimen>
+    <dimen name="ap_list_item_rssi_Strip_width">150dp</dimen>
+    <dimen name="ap_list_item_rssi_Strip_height">20dp</dimen>
+    <dimen name="ap_list_item_rssi_Strip_x_radius">3dp</dimen>
+    <dimen name="ap_list_item_rssi_Strip_y_radius">3dp</dimen>
+    
+    
+    <dimen name="test">180dp</dimen>
+    <dimen name="rssi_pie_chart_radius">120dp</dimen>
+    <dimen name="rssi_pie_chart_top_margin">30dp</dimen>  
+    <dimen name="rssi_pie_chart_horizontal_margin">30dp</dimen> 
+    <dimen name="rssi_pie_chart_circle_stroke_width">1dp</dimen>
+      <dimen name="rssi_pie_chart_circle_scale_text_margin">3dp</dimen>
+    <dimen name="rssi_pie_chart_circle_scale_text_size">11sp</dimen>
+     
+    
+    <dimen name="rssi_map_rect_left">50dp</dimen>
+    <dimen name="rssi_map_rect_top">40dp</dimen>
+    <dimen name="rssi_map_rect_right">540dp</dimen>
+    <dimen name="rssi_map_rect_bottom">320dp</dimen>
+    <dimen name="rssi_map_yCoordInterval">35dp</dimen>
+    <dimen name="rssi_map_rect_width">490dp</dimen>
+    <dimen name="rssi_map_rect_height">280dp</dimen>
+    <dimen name="rssi_map_draw_brokenLine_offX">1dp</dimen>
+    <dimen name="rssi_map_dash_interval">1dp</dimen>
+    <dimen name="rssi_map_dash_first_left">50dp</dimen>
+    <dimen name="rssi_map_dash_first_top">75dp</dimen>
+    <dimen name="rssi_map_dash_first_right">540dp</dimen>
+    <dimen name="rssi_map_dash_first_bottom">75dp</dimen>
+    <dimen name="rssi_map_dash_second_left">50dp</dimen>
+    <dimen name="rssi_map_dash_second_top">110dp</dimen>
+    <dimen name="rssi_map_dash_second_right">540dp</dimen>
+    <dimen name="rssi_map_dash_second_bottom">110dp</dimen>
+    <dimen name="rssi_map_dash_third_left">50dp</dimen>
+    <dimen name="rssi_map_dash_third_top">145dp</dimen>
+    <dimen name="rssi_map_dash_third_right">540dp</dimen>
+    <dimen name="rssi_map_dash_third_bottom">145dp</dimen>
+    <dimen name="rssi_map_dash_fourth_left">50dp</dimen>
+    <dimen name="rssi_map_dash_fourth_top">180dp</dimen>
+    <dimen name="rssi_map_dash_fourth_right">540dp</dimen>
+    <dimen name="rssi_map_dash_fourth_bottom">180dp</dimen>
+    <dimen name="rssi_map_dash_fifth_left">50dp</dimen>
+    <dimen name="rssi_map_dash_fifth_top">215dp</dimen>
+    <dimen name="rssi_map_dash_fifth_right">540dp</dimen>
+    <dimen name="rssi_map_dash_fifth_bottom">215dp</dimen>
+    <dimen name="rssi_map_dash_sixth_left">50dp</dimen>
+    <dimen name="rssi_map_dash_sixth_top">250dp</dimen>
+    <dimen name="rssi_map_dash_sixth_right">540dp</dimen>
+    <dimen name="rssi_map_dash_sixth_bottom">250dp</dimen>
+    <dimen name="rssi_map_dash_seventh_left">50dp</dimen>
+    <dimen name="rssi_map_dash_seventh_top">285dp</dimen>
+    <dimen name="rssi_map_dash_seventh_right">540dp</dimen>
+    <dimen name="rssi_map_dash_seventh_bottom">285dp</dimen>
+    <dimen name="rssi_map_brokenLine_width">1.5dp</dimen>
+    <dimen name="rssi_map_brokenLine_pathEffect_corner_radius">1.5dp</dimen>
+    <dimen name="rssi_map_axis_width">0.5dp</dimen>
+    <dimen name="rssi_map_rssiValueIndicator_text_size">12sp</dimen>
+    <dimen name="rssi_map_rssiValueIndicator_value_base_draw_x">30dp</dimen>
+    <dimen name="rssi_map_rssiValueIndicator_value_right_margin">3dp</dimen>
+    <dimen name="rssi_map_rssiValueIndicator_ninty_draw_y">290dp</dimen>
+    <dimen name="rssi_map_rssiUnit_x">20dp</dimen>
+    <dimen name="rssi_map_rssiUnit_height">75dp</dimen>
+    <dimen name="rssi_map_rssiUnit_text_size">11sp</dimen>
+ 
+</resources>

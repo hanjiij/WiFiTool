@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/action_selectView"
+        android:icon="@drawable/ic_menu_view"
+        android:showAsAction="always|withText"
+        android:title="@string/title_menu_view">
+        <menu>
+            <group
+                android:id="@+id/group_selectView"
+                android:checkableBehavior="single" >
+                <item
+                    android:id="@+id/action_selectView_apList"
+                    android:checked="true"
+                    android:icon="@drawable/ic_menu_ap_list"
+                    android:title="@string/title_menu_view_apList"/>
+                <item
+                    android:id="@+id/action_selectView_breakWifi"
+                    android:icon="@drawable/ic_menu_ap_break"
+                    android:title="@string/title_menu_view_brokeWifi"/>
+                <item
+                    android:id="@+id/action_selectView_network_topology"
+                    android:icon="@drawable/ic_menu_network_topology"
+                    android:title="@string/title_menu_view_network_topology"/>
+                <item
+                    android:id="@+id/action_selectView_detectionWifi"
+                    android:icon="@drawable/ic_menu_detectionwifi"
+                    android:title="@string/title_menu_view_detectionWifi"/>
+                <item
+                    android:id="@+id/action_selectView_locationMapWifi"
+                    android:icon="@drawable/ic_menu_locationmapwifi"
+                    android:title="@string/title_menu_view_locationMapWifi"/>
+                <item
+                    android:id="@+id/action_selectView_radarWifi"
+                    android:icon="@drawable/ic_menu_radarwifi"
+                    android:title="@string/title_menu_view_radarWifi"/>
+                <item
+                    android:id="@+id/action_selectView_findWifi"
+                    android:icon="@drawable/ic_menu_findwifi"
+                    android:title="@string/title_menu_view_wifiFinder"/>
+                <item
+                    android:id="@+id/action_selectView_RSSIMap"
+                    android:icon="@drawable/ic_menu_rssi_map"
+                    android:title="@string/title_menu_view_RSSIMap"/>
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/action_preferences"
+        android:icon="@drawable/ic_menu_preferences"
+        android:showAsAction="always|withText"
+        android:title="@string/title_menu_preferences">
+        <menu>
+            <group android:id="@+id/group_settings" >
+                <item
+                    android:id="@+id/action_about"
+                    android:icon="@drawable/ic_menu_info_details"
+                    android:title="@string/action_about"/>
+                <item
+                    android:id="@+id/action_quit"
+                    android:icon="@drawable/ic_menu_close_clear_cancel"
+                    android:title="@string/action_quit"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/action_help"
+        android:title="@string/action_help"
+        android:menuCategory="system"
+        android:icon="@drawable/ic_menu_help"
+        android:orderInCategory="2"
+        android:showAsAction="never"/>
+</menu>

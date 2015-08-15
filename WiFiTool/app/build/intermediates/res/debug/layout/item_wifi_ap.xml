@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:descendantFocusability="blocksDescendants">
+
+    <ImageView
+        android:id="@+id/imgView_ap_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:src="@null"/>
+
+    <ImageView
+        android:id="@+id/imgView_groupIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:src="@null"/>
+
+    <ImageView
+        android:id="@+id/imgView_ap_5G"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:src="@null"/>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="@dimen/ap_list_item_rssi_Strip_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_ap_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="5128 MHz ( 5 GHz )ertttt"
+            android:textAllCaps="false"
+            android:textColor="@color/white_dark"
+            android:textSize="8sp"
+            android:textStyle="normal"
+            android:typeface="normal"/>
+
+        <com.jhj.dev.wifi.server.wifiaplist.WifiAPListItemRSSIView
+            android:id="@+id/wifiAPListItemRSSIView"
+            android:layout_width="@dimen/ap_list_item_rssi_Strip_width"
+            android:layout_height="@dimen/ap_list_item_rssi_Strip_height"
+            android:focusable="false"/>
+
+        <TextView
+            android:id="@+id/tv_ap_organization"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="YoungGenerationInternationalCorp.dsfdsfdsfdsfdsfdsyyyyyyy"
+            android:textAllCaps="false"
+            android:textColor="@color/white_dark"
+            android:textSize="8sp"
+            android:textStyle="normal"
+            android:typeface="normal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:layout_toLeftOf="@id/imgView_groupIndicator"
+        android:layout_toRightOf="@id/imgView_ap_level"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_ap_MAC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="ac:f6:f7:00:08"
+            android:textAllCaps="false"
+            android:textColor="@color/white_dark"
+            android:textSize="8sp"
+            android:textStyle="normal"
+            android:typeface="normal"/>
+
+        <TextView
+            android:id="@+id/tv_ap_SSID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="LevelsaKKKHH"
+            android:textAllCaps="false"
+            android:textColor="@color/white_dark"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            android:typeface="normal"/>
+
+        <TextView
+            android:id="@+id/tv_ap_capabilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="[WPA][PSK2]sdfsdfdsfsdffsffsffsdfsfdsfdsfdsfdsfdsdfsdfdsfds"
+            android:textAllCaps="false"
+            android:textColor="@color/white_dark"
+            android:textSize="8sp"
+            android:textStyle="normal"
+            android:typeface="normal"/>
+    </LinearLayout>
+
+    <!--<TextView-->
+    <!--android:id="@+id/tv_ap_SSID"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toRightOf="@id/imgView_ap_level"-->
+    <!--android:layout_alignBottom="@id/imgView_ap_level"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_marginRight="185dp"-->
+    <!--android:layout_marginLeft="15dp"-->
+    <!--android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"-->
+    <!--android:textSize="16sp"-->
+    <!--android:ellipsize="end"-->
+    <!--android:singleLine="true"-->
+    <!--android:text="LevelsaKKKHH"-->
+    <!--android:textColor="#dcdcdc"/>-->
+
+    <!--<wifiss.wifiaplist.WifiAPListItemRSSIView-->
+    <!--android:id="@+id/wifiAPListItemRSSIView"-->
+    <!--android:layout_width="@dimen/ap_list_item_rssi_Strip_width"-->
+    <!--android:layout_height="@dimen/ap_list_item_rssi_Strip_height"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:focusable="false"-->
+    <!--android:layout_marginRight="10dp" />-->
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/layout/item_wifi_ap.xml -->

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string-array name="rssi_map_value_indicator">
+        <item>-90</item>
+        <item>-80</item>
+        <item>-70</item>
+        <item>-60</item>
+        <item>-50</item>
+        <item>-40</item>
+        <item>-30</item>
+    </string-array>
+    
+    <string-array name="rssi_pie_chart_circle_scale_indicator">
+        <item>-100(-20)</item>
+        <item>-90</item>
+        <item>-80</item>
+        <item>-70</item>
+        <item>-60</item>
+        <item>-50</item>
+        <item>-40</item>
+        <item>-30</item>
+    </string-array>
+    
+    <string-array name="wifiScanInterverLv">
+        <item>Lv0(最短)</item>
+        <item>Lv1</item>
+        <item>Lv2</item>
+        <item>Lv3</item>
+        <item>Lv4(最长)</item>
+    </string-array>
+
+    <integer-array name="wifiScanInterver">
+        <item>1000</item>
+        <item>2000</item>
+        <item>3000</item>
+        <item>4000</item>
+        <item>5000</item>
+    </integer-array>
+    
+    <integer-array name="soundEffectPlayInterval">
+        <item>100</item>
+        <item>300</item>
+        <item>1000</item>
+        <item>3000</item>
+        <item>5000</item>
+        
+    </integer-array>
+    
+    <array name="rssi_map_dash_pts_arr">
+        <item>@dimen/rssi_map_dash_first_left</item>
+        <item>@dimen/rssi_map_dash_first_top</item>
+        <item>@dimen/rssi_map_dash_first_right</item>
+        <item>@dimen/rssi_map_dash_first_bottom</item>
+        
+        <item>@dimen/rssi_map_dash_second_left</item>
+        <item>@dimen/rssi_map_dash_second_top</item>
+        <item>@dimen/rssi_map_dash_second_right</item>
+        <item>@dimen/rssi_map_dash_second_bottom</item>
+        
+        <item>@dimen/rssi_map_dash_third_left</item>
+        <item>@dimen/rssi_map_dash_third_top</item>
+        <item>@dimen/rssi_map_dash_third_right</item>
+        <item>@dimen/rssi_map_dash_third_bottom</item>
+        
+        <item>@dimen/rssi_map_dash_fourth_left</item>
+        <item>@dimen/rssi_map_dash_fourth_top</item>
+        <item>@dimen/rssi_map_dash_fourth_right</item>
+        <item>@dimen/rssi_map_dash_fourth_bottom</item>
+        
+        <item>@dimen/rssi_map_dash_fifth_left</item>
+        <item>@dimen/rssi_map_dash_fifth_top</item>
+        <item>@dimen/rssi_map_dash_fifth_right</item>
+        <item>@dimen/rssi_map_dash_fifth_bottom</item>
+        
+        <item>@dimen/rssi_map_dash_sixth_left</item>
+        <item>@dimen/rssi_map_dash_sixth_top</item>
+        <item>@dimen/rssi_map_dash_sixth_right</item>
+        <item>@dimen/rssi_map_dash_sixth_bottom</item>
+        
+        <item>@dimen/rssi_map_dash_seventh_left</item>
+        <item>@dimen/rssi_map_dash_seventh_top</item>
+        <item>@dimen/rssi_map_dash_seventh_right</item>
+        <item>@dimen/rssi_map_dash_seventh_bottom</item>
+        
+    </array>
+    
+    
+    <string-array name="passwords">
+        <item> 00000000 </item>
+        <item> 11223344 </item>
+        <item> 12341234 </item>
+        <item> 12344321 </item>
+        <item> 87654321 </item>
+        <item> abcdefgh </item>
+        <item> abcdabcd </item>
+        <item> abcd1234 </item>
+        <item> a1b2c3d4 </item>
+        <item> 1234qwer </item>
+        <item> qwer1234 </item>
+        <item> qwerasdf </item>
+        <item> asdfghjkl </item>
+        <item> p@ssword </item>
+        <item> 12345678 </item>
+        <item> 123456789 </item>
+        <item> 1234567890 </item>
+        <item> 11111111 </item>
+        <item> 111111111 </item>
+        <item> 1111111111 </item>
+        <item> 22222222 </item>
+        <item> 222222222 </item>
+        <item> 2222222222 </item>
+        <item> 33333333 </item>
+        <item> 333333333 </item>
+        <item> 3333333333 </item>
+        <item> 44444444 </item>
+        <item> 444444444 </item>
+        <item> 4444444444 </item>
+        <item> 55555555 </item>
+        <item> 555555555 </item>
+        <item> 5555555555 </item>
+        <item> 66666666 </item>
+        <item> 666666666 </item>
+        <item> 6666666666 </item>
+        <item> 77777777 </item>
+        <item> 777777777 </item>
+        <item> 7777777777 </item>
+        <item> 88888888 </item>
+        <item> 888888888 </item>
+        <item> 8888888888 </item>
+        <item> 99999999 </item>
+        <item> 999999999 </item>
+        <item> 9999999999</item>
+        <item> 000000000 </item>
+        <item> 0000000000 </item>
+        <item> 22334455 </item>
+        <item> 33445566 </item>
+        <item> 44556677 </item>
+        <item> 55667788 </item>
+        <item> 66778899 </item>
+        <item> 77889900 </item>
+        <item> 00112233 </item>
+        <item> 147258369 </item>
+        <item> 00001111 </item>
+        <item> 00002222 </item>
+        <item> 00004444 </item>
+        <item> 00005555 </item>
+        <item> 11112222 </item>
+        <item> 11112222 </item>
+        <item> 11113333 </item>
+        <item> 11114444 </item>
+        <item> 11115555 </item>
+        <item> 11110000 </item>
+        <item> 22221111 </item>
+        <item> 22223333 </item>
+        <item> 22224444 </item>
+        <item> 22225555 </item>
+        <item> 22220000 </item>
+        <item> 33331111 </item>
+        <item> 33332222 </item>
+        <item> 33334444 </item>
+        <item> 33335555 </item>
+        <item> 44440000 </item>
+        <item> 44441111 </item>
+        <item> 44442222 </item>
+        <item> 44444444 </item>
+        <item> 44445555 </item>
+        <item> 44446666 </item>
+        <item> 55550000 </item>
+        <item> 55551111 </item>
+        <item> 55552222 </item>
+        <item> 55554444 </item>
+        <item> 55556666 </item>
+        <item> 66660000 </item>
+        <item> 66661111 </item>
+        <item> 66662222 </item>
+        <item> 66664444 </item>
+        <item> 66665555 </item>
+        <item> 77770000 </item>
+        <item> 77771111 </item>
+        <item> 77772222 </item>
+        <item> 77774444 </item>
+        <item> 77775555 </item>
+        <item> 88880000 </item>
+        <item> 88881111 </item>
+        <item> 88882222 </item>
+        <item> 88884444 </item>
+        <item> 88885555 </item>
+        <item> 99990000 </item>
+        <item> 99991111 </item>
+        <item> 99992222 </item>
+        <item> 99994444 </item>
+        <item> 99995555 </item>
+        <item> qwertyuiop </item>
+        <item> password </item>
+        <item> aaaaaaaa </item>
+        <item> bbbbbbbb </item>
+        <item> cccccccc </item>
+        <item> dddddddd </item>
+        <item> eeeeeeee </item>
+        <item> ffffffff </item>
+        <item> gggggggg </item>
+        <item> goodgood </item>
+        <item> ccitsa323hl </item>
+        <item> ccithulian </item>
+        <item> buyaoxiazai </item>
+        <item> android123 </item>
+        <item> zzzzzzzz </item>
+    </string-array>
+    
+</resources>

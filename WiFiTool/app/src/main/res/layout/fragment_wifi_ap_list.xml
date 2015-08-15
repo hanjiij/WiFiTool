@@ -1,0 +1,49 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ly_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff484848"
+    android:orientation="vertical"
+    tools:context="com.jhj.dev.wifi.server.wifiaplist.WifiAPListActivity" >
+    
+    <TextView
+        android:id="@+id/tv_wifiConState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000"
+        android:drawableLeft="@drawable/ic_ok"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:text="NO"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault" />
+    
+    
+    
+    <ExpandableListView
+        android:id="@+id/expLV_wifiList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:groupIndicator="@null" />
+    
+    
+    <TextView
+        android:id="@+id/apList_emptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/txt_noneWifiSingle"/>
+    <!--
+         <Button 
+            android:id="@+id/but_seeView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:text="see View"/>
+
+    -->
+
+</LinearLayout>

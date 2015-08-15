@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <item
+        android:id="@+id/menu_context_item_look_ap_details"
+        android:icon="@drawable/ic_launcher"
+        android:title="@string/look_ap_details"/>
+    <item
+        android:id="@+id/menu_context_item_connect_ap"
+        android:icon="@drawable/ic_launcher"
+        android:title="@string/connect_ap"/>
+</menu>
+<!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/menu/ap_list_item_context.xml -->

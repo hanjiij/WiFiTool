@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#484848"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#484848"
+            android:text="@string/finder" >
+        </Button>
+        
+         <Button
+            android:id="@+id/button_Draw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#484848"
+            android:layout_weight="1"
+            android:text="@string/drawer" >
+        </Button>
+        
+ 
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <ListView
+            android:id="@+id/listView_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+        </ListView>
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/info_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="10dip" >
+
+        <TextView
+            android:id="@+id/info_ip"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="10dip"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/info_ssid"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="wifi_unknow"
+            android:textColor="#FFFFFF"
+            android:textSize="10dip"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/info_mode"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="10dip"
+            android:typeface="monospace" />
+        
+         <TextView
+            android:id="@+id/info_mac"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FFFFFF"
+            android:textSize="10dip"
+            android:typeface="monospace" />
+    </LinearLayout>
+
+</LinearLayout>

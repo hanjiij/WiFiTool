@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.jhj.dev.wifi.MainActivity" >
+
+    <item
+        android:id="@+id/action_filter"
+        android:title="过滤"
+        android:menuCategory="container"/>
+    <item
+        android:id="@+id/action_setScanInterver"
+        android:title="扫描间隔"
+        android:menuCategory="container"/>
+</menu>

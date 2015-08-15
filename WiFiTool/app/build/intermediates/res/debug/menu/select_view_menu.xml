@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+   <item
+        android:id="@+id/action_selectView_apList"
+        android:actionLayout="@layout/item_list_actionbar"/>
+   <item
+        android:id="@+id/action_selectView_RSSIMap"
+        android:actionLayout="@layout/item_list_actionbar"/>
+</menu>
+<!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/menu/select_view_menu.xml -->

@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context="com.example.searchwifi.MainActivity" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.jhj.dev.wifi.server.myview.Radar_Draw_View
+            android:id="@+id/Drawimage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitStart"
+            android:src="@drawable/radar_background" />
+
+        <ImageView
+            android:id="@+id/zoomgap"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitStart"
+            android:src="@drawable/wifi_signal_detector_anim" />
+
+        <TextView
+            android:id="@+id/angleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical|center_horizontal"
+            android:paddingBottom="130dp"
+            android:text=" 0°  N"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000" />
+    </FrameLayout>
+
+</LinearLayout><!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/layout/activity_radar.xml -->

@@ -1,0 +1,55 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="@android:style/Theme.DeviceDefault">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+ 
+     <style name="TextAppearance_but">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+    
+     <style name="Button_SelectAP_Style">
+         <item name="android:background">@drawable/but_select_ap_selector</item>
+         <item name="android:textAppearance">@style/TextAppearance_but</item>
+         <item name="android:textColor">#dcdcdc</item>
+         <item name="android:padding">3dp</item>
+     </style>
+     
+     
+     
+     <style name="AboutText_head" parent="@android:style/Widget.TextView">
+         <item name="android:textStyle">bold</item>
+         <item name="android:textColor">#00ff00</item>
+         <item name="android:textSize">20sp</item>
+     </style>
+     <style name="AboutText_codeVersion" parent="@android:style/Widget.TextView">
+         <item name="android:textStyle">normal</item>
+         <item name="android:textColor">#dcdcdc</item>
+         <item name="android:textSize">10sp</item>
+     </style>
+     <style name="AboutText_bold" parent="@android:style/Widget.TextView">
+         <item name="android:textStyle">bold</item>
+         <item name="android:textColor">#DCDCDC</item>
+         <item name="android:textSize">15sp</item>
+     </style>
+     <style name="AboutText_small" parent="@android:style/Widget.TextView">
+        <item name="android:textStyle">normal</item>
+         <item name="android:textColor">#DCDCDC</item>
+         <item name="android:textSize">14sp</item>
+         <item name="android:typeface">monospace</item>
+     </style>
+</resources>

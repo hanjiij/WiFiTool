@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true" >
+
+    <com.jhj.dev.wifi.server.wifirssimap.WifiRSSIMapView
+        android:id="@+id/wifiRSSIMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="3dp"
+        android:layout_gravity="top" >
+
+        <ImageButton
+            android:id="@+id/imgBut_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|left"
+            android:background="@null"
+            android:src="@drawable/ic_arrow_back_white" />
+        <ImageButton
+                android:id="@+id/imgBut_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:background="@null"
+                android:src="@drawable/ic_more_horiz_white" />
+    </FrameLayout>
+    
+    <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="280dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginRight="3dp"
+                android:layout_gravity="top|right"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:id="@+id/ly_but"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+                </LinearLayout>
+            </ScrollView>
+  
+</FrameLayout><!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/layout/fragment_wifi_rssi_map.xml -->

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_sort"
+        android:icon="@drawable/ic_menu_sort_by_size"
+        android:showAsAction="never"
+        android:title="@string/menuTitle_sort">
+        <menu>
+            <group
+                android:id="@+id/sortGroup"
+                android:checkableBehavior="single"
+                android:menuCategory="secondary" >
+                <item
+                    android:id="@+id/action_sortByName"
+                    android:icon="@drawable/ic_menu_sort_alphabetically"
+                    android:title="@string/sort_name"/>
+                <item
+                    android:id="@+id/action_sortByRSSI"
+                    android:checked="true"
+                    android:icon="@drawable/ic_menu_sort_signal"
+                    android:title="@string/sort_RSSI"/>
+            </group>
+        </menu>
+    </item>
+
+</menu><!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/menu/wifi_ap_list_menu.xml -->

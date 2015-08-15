@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.speedsensor.WifiLocation" >
+
+    <item
+        android:id="@+id/history_map"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:icon="@drawable/ic_menu_recent_history"
+        android:title="@string/action_check_history_map"/>
+    
+</menu>
+<!-- From: file:/C:/Users/HJ/Desktop/WiFiTool/app/src/main/res/menu/wifi_location.xml -->
