@@ -13,6 +13,8 @@ import android.net.wifi.SupplicantState;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -21,22 +23,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jhj.dev.wifi.server.DrawerActivity;
 import com.jhj.dev.wifi.server.R;
 import com.jhj.dev.wifi.server.mydatabase.MyDatabase;
 import com.jhj.dev.wifi.server.util.AbstractDiscovery;
 import com.jhj.dev.wifi.server.util.DefaultDiscovery;
 import com.jhj.dev.wifi.server.util.HostBean;
 import com.jhj.dev.wifi.server.util.NetInfo;
+import com.jhj.dev.wifi.server.util.NewDrawerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,8 @@ public class FinderFragment extends Fragment {
     protected String info_in_str = "";
     protected String info_mo_str = "";
     protected String info_mac_str = "";
-    Button scanButton, drawButton;
+//    Button scanButton, drawButton;
+    private NewDrawerView drawerView;
     ListView showListView;
     TextView ipTextView, ssidTextView, modeTextView, mac;
     AbstractDiscovery mDiscoveryTask = null;// 专门进行异步数据加载
@@ -154,19 +155,35 @@ public class FinderFragment extends Fragment {
 
     private void initList() {
         // TODO Auto-generated method stub
-        adapter.clear();// 清零数据
+        if (adapter!=null)
+        {
+            adapter.clear();// 清零数据
+        }
+//			adapter.clear();// 清零数据
         hosts = new ArrayList<HostBean>();// 实例化集合
     }
+
 
     public void stopDiscovering() {
 
         mDiscoveryTask = null;
         System.gc();
         makeToast("网上邻居已经发现完毕！");
-        scanButton.setEnabled(true);
+//        scanButton.setEnabled(true);
         getActivity().setProgressBarVisibility(false);
 
     }
+
+    Handler handler=new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            startDiscovering();
+            drawerView.setActivity(getActivity());
+            drawerView.setHosts(hosts);
+        }
+    };
 
     public void addHost(HostBean host) {
         host.position = hosts.size();
@@ -198,36 +215,50 @@ public class FinderFragment extends Fragment {
     {
         View view = inflater.inflate(R.layout.find_activity, null);
         init(view);
-        inisetListener();
+//        inisetListener();
         adapter = new HostsAdapter(getActivity().getApplicationContext());
         showListView.setAdapter(adapter);
+
+        //在睡眠0.7秒后开始扫描
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(700);
+                    handler.sendEmptyMessage(0);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
         return view;
     }
 
-    private void inisetListener() {
-        // TODO Auto-generated method stub
-        scanButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                scanButton.setEnabled(false);
-                startDiscovering();// 扫描
-            }
-
-        });
-
-        drawButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                Intent intent = new Intent(getActivity(), DrawerActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
+//    private void inisetListener() {
+//        // TODO Auto-generated method stub
+//        scanButton.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                scanButton.setEnabled(false);
+//                startDiscovering();// 扫描
+//            }
+//
+//        });
+//
+//        drawButton.setOnClickListener(new OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//                // TODO Auto-generated method stub
+//                Intent intent = new Intent(getActivity(), DrawerActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     private void setInfo() {
         // TODO Auto-generated method stub
@@ -271,13 +302,15 @@ public class FinderFragment extends Fragment {
 
     private void init(View view) {
         // TODO Auto-generated method stub
-        scanButton = (Button) view.findViewById(R.id.button_find);
-        drawButton = (Button) view.findViewById(R.id.button_Draw);
+//        scanButton = (Button) view.findViewById(R.id.button_find);
+//        drawButton = (Button) view.findViewById(R.id.button_Draw);
         showListView = (ListView) view.findViewById(R.id.listView_show);
+        showListView.setVisibility(View.GONE);
         ipTextView = (TextView) view.findViewById(R.id.info_ip);
         ssidTextView = (TextView) view.findViewById(R.id.info_ssid);
         modeTextView = (TextView) view.findViewById(R.id.info_mode);
         mac = (TextView) view.findViewById(R.id.info_mac);
+        drawerView= (NewDrawerView) view.findViewById(R.id.newDraw);
     }
 
     public void makeToast(String msg) {
@@ -302,6 +335,8 @@ public class FinderFragment extends Fragment {
         getActivity().unregisterReceiver(receiver);// 取消广播
     }
 
+    private boolean isshow=false;
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater)
     {
@@ -313,8 +348,45 @@ public class FinderFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item)
     {
         // TODO Auto-generated method stub
+
+                int id=item.getItemId();
+        switch (id)
+        {
+            case R.id.refresh:
+                handler.sendEmptyMessage(1);
+                break;
+            default:
+                if (isshow)
+                {
+                    item.setTitle("显示列表");
+                    showListView.setVisibility(View.GONE);
+                    drawerView.setVisibility(View.VISIBLE);
+                    isshow=false;
+                }else {
+                    item.setTitle("显示绘图");
+                    showListView.setVisibility(View.VISIBLE);
+                    drawerView.setVisibility(View.GONE);
+                    isshow=true;
+                }
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
+
+    //每次点击菜单都会执行这个函数
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (isshow)
+        {
+            isshow=true;
+        }else {
+
+            isshow=false;
+        }
+
+    }
+
 
     @Override
     public void onStop()
@@ -374,6 +446,41 @@ public class FinderFragment extends Fragment {
             return convertView;
         }
     }
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+//        inflater.inflate(R.menu.drawer, menu);
+//        super.onCreateOptionsMenu(menu, inflater);
+//    }
+
+
+
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//
+//        int id=item.getItemId();
+//        switch (id)
+//        {
+//            case R.id.refresh:
+//                handler.sendEmptyMessage(1);
+//                break;
+//            default:
+//                if (isshow)
+//                {
+//                    item.setTitle("显示列表");
+//                    showListView.setVisibility(View.GONE);
+//                    drawerView.setVisibility(View.VISIBLE);
+//                    isshow=false;
+//                }else {
+//                    item.setTitle("显示绘图");
+//                    showListView.setVisibility(View.VISIBLE);
+//                    drawerView.setVisibility(View.GONE);
+//                    isshow=true;
+//                }
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
 
 }

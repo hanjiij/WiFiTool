@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-    
-    
+
+    <item
+        android:id="@+id/listShow"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_sort_by_size"
+        android:showAsAction="never"
+        android:title="显示列表"/>
+    <item
+        android:id="@+id/refresh"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_menu_refresh"
+        android:showAsAction="never"
+        android:title="刷新"/>
 
 </menu>

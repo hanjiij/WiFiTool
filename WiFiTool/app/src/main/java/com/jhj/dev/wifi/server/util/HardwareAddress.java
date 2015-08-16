@@ -25,7 +25,7 @@ public class HardwareAddress {
     static String macDates;
     static ArrayList<String> arrayList = new ArrayList<String>();
     // static String name;
-    private OnNameListener onNameListener;
+    private static OnNameListener onNameListener;
 
     public HardwareAddress(Activity activity) {
 
@@ -67,6 +67,9 @@ public class HardwareAddress {
                                     name = name.substring(0, 10);
                                 }
                                 arrayList.add(name);
+
+                                //监听数据
+                                onNameListener.onNameArrayList(arrayList);
                                 break;
                             }
 
@@ -122,6 +125,8 @@ public class HardwareAddress {
                         String names = line.split(">")[1].split("<")[0];
                         name = names.split(" ");
                         arrayList.add(name[0]);
+                        //监听数据
+                        onNameListener.onNameArrayList(arrayList);
                         System.out.println("===>>>>>" + name[0]);
 
                         // System.out.println("===>>>>>" + name[0]);
@@ -132,6 +137,8 @@ public class HardwareAddress {
                     // TODO Auto-generated catch block
                     name[0] = "未知设备";
                     arrayList.add(name[0]);
+                    //监听数据
+                    onNameListener.onNameArrayList(arrayList);
                 }
             }
 
@@ -147,14 +154,14 @@ public class HardwareAddress {
 
     public void setOnNameListener(OnNameListener onNameListener) {
         this.onNameListener = onNameListener;
-        getDates();
+//        getDates();
     }
 
-    private void getDates() {
-        // TODO Auto-generated method stub
-        // getxml("http://mac.51240.com" + "/" + NetInfo.macAddress + "__mac/");
-        onNameListener.onNameArrayList(arrayList);
-    }
+//    private void getDates() {
+//        // TODO Auto-generated method stub
+//        // getxml("http://mac.51240.com" + "/" + NetInfo.macAddress + "__mac/");
+//        onNameListener.onNameArrayList(arrayList);
+//    }
 
     public interface OnNameListener {
         void onNameArrayList(ArrayList<String> arrayList);
